@@ -164,7 +164,7 @@ else
 	echo "Okay, that was all I needed. We are ready to setup your OpenVPN server now"
 	read -n1 -r -p "Press any key to continue..."
 	apt-get update
-	apt-get install openvpn iptables openssl -y
+	apt-get install openvpn iptables openssl zip -y
 	cp -R /usr/share/doc/openvpn/examples/easy-rsa/ /etc/openvpn
 	# easy-rsa isn't available by default for Debian Jessie and newer
 	if [ ! -d /etc/openvpn/easy-rsa/2.0/ ]; then
@@ -276,7 +276,11 @@ else
 	cat $CLIENT.key >> $CLIENT.ovpn
 	echo -e "</key>\n" >> $CLIENT.ovpn
 
-	zip ../ovpn-$CLIENT.zip $CLIENT.conf ca.crt $CLIENT.crt $CLIENT.key $CLIENT.ovpn
+	#add for OS X who use Tunnelblick
+	mkdir $CLIENT.tblk
+	cp $CLIENT.ovpn $CLIENT.tblk/config.ovpn
+	
+	zip -r ../ovpn-$CLIENT.zip $CLIENT.conf ca.crt $CLIENT.crt $CLIENT.key $CLIENT.ovpn $CLIENT.tblk
 	cd ~/
 	rm -rf ovpn-$CLIENT
 	echo ""

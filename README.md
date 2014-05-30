@@ -16,6 +16,7 @@ Once it ends, you can run it again to add more users.
 - Automatic inline .ovpn file generation for Android devices
 - Google DNS servers
 - Port 53 enabled by default for captive portal bypass
+- add pre config for Tunnelblick (OpenVPN client for OSX)
 
 ###I want to run my own VPN but don't have a server for that
 There are reliable providers where you can get a little VPS for even less than one buck a month.
